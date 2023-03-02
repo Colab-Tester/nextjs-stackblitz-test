@@ -9,6 +9,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+        <img src="https://dsm04pap003files.storage.live.com/y4m-7oAj5J82KRE04MYmt0KXVATqn8a6AaRaJac-67mG4fh1oM8lTmobnKCHc1b3wzNrP91ewP5qnVUntq5MjzG9Q0DEpkjebASwQkPZKPmTF-s8wDFpmDrcVjxBWlepyxgtRfg4FnG8hPVmGQ7bajHNnrBKUg86qkBa-VX3_Yj7h8eUEBFStKswBnD1cEmI7Vd?width=300&height=181&cropmode=none" />
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
