@@ -42,6 +42,10 @@ export default (req, res) => {
         );
       });
     }
-  );
-  res.status(200).json({ name: path.basename('C:\\temp\\myfile.html') });
+  ).then(() => {
+    res.status(200).json({ name: path.basename('C:\\temp\\myfile.html') });
+  }).catch(() => {
+    res.status(200).json({ name: path.basename('C:\\temp\\myfile.html') });
+  })
+  
 };
