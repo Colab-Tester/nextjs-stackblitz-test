@@ -70,6 +70,7 @@ export default function Home() {
             })
               .then((response) => response.json())
               .then((response) => {
+                console.log(response)
                 // store the access token and refresh token in local storage or cookie
                 console.log(`access_token: ${response.access_token}`);
                 localStorage.setItem('access_token', response.access_token);
