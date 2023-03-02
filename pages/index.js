@@ -58,12 +58,12 @@ export default function Home() {
               grant_type: 'authorization_code',
               code: code,
               redirect_uri: redirectUri,
-              resource: "https://graph.microsoft.com/"
             };
 
             fetch(url, {
               method: 'POST',
               headers: {
+                Authorization: `Bearer ${code}`,
                 'Content-Type': 'application/x-www-form-urlencoded',
               },
               body: new URLSearchParams(data),
