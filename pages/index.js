@@ -44,7 +44,8 @@ export default function Home() {
 
         <button
           onClick={() => {
-            var code = 'M.R3_BAY.b16c75db-a960-6c11-d67e-a404604c625d';
+            var code = new URLSearchParams(window.location.search).get('code');
+
             var clientId = '60dbf259-3e7b-41d1-98c1-da0df9addca7';
             var clientSecret = '8Lr8Q~ruGkwRzQhxCErBIvdELlSqBv3UaevV.dqo'; // only needed for web apps
             var redirectUri =
