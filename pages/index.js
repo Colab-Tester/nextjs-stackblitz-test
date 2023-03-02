@@ -58,6 +58,7 @@ export default function Home() {
               grant_type: 'authorization_code',
               code: code,
               redirect_uri: redirectUri,
+              resource: "https://graph.microsoft.com/"
             };
 
             fetch(url, {
