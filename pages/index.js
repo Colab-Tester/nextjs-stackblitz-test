@@ -63,8 +63,9 @@ export default function Home() {
             fetch(url, {
               method: 'POST',
               headers: {
-                Authorization: `Bearer ${code}`,
+                'Authorization': `Bearer ${code}`,
                 'Content-Type': 'application/x-www-form-urlencoded',
+                'Access-Control-Allow-Origin': '*',
               },
               body: new URLSearchParams(data),
             })
