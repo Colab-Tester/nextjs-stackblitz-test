@@ -11,9 +11,6 @@
     "next": "^13.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "dotenv": "^16.0.3",
-    "msal-node": "^1.15.0",
-    "microsoft-graph-client": "3.0.5",
-    "isomorphic-fetch": "3.0.0"
+    "dotenv": "^16.0.3"
   }
 }
