@@ -2,6 +2,19 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
+  function callOneDriveApi(accessToken) {
+    var url = 'https://graph.microsoft.com/v1.0/me/drive/root/assets/images'; // get the root folder children
+
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + accessToken,
+      },
+    })
+      .then((response) => response.json())
+      .then((response) => console.log(response)) // display the folder items
+      .catch((error) => console.log(error));
+  }
   return (
     <div className={styles.container}>
       <Head>
@@ -9,6 +22,65 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+        <button
+          onClick={() => {
+            var clientId = '60dbf259-3e7b-41d1-98c1-da0df9addca7';
+            var redirectUri =
+              'https://thunderous-marshmallow-dec0d2.netlify.app/';
+            var scopes = 'files.readwrite offline_access'; // add more scopes as needed
+            var url =
+              'https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=' +
+              clientId +
+              '&scope=' +
+              scopes +
+              '&response_type=code&redirect_uri=' +
+              redirectUri;
+            window.location.href = url; // redirect the user to the login page
+          }}
+        >
+          Logar
+        </button>
+
+        <button
+          onClick={() => {
+            var clientId = '60dbf259-3e7b-41d1-98c1-da0df9addca7';
+            var clientSecret = '8Lr8Q~ruGkwRzQhxCErBIvdELlSqBv3UaevV.dqo'; // only needed for web apps
+            var redirectUri =
+              'https://thunderous-marshmallow-dec0d2.netlify.app/';
+            var url =
+              'https://login.microsoftonline.com/common/oauth2/v2.0/token';
+            var data = {
+              client_id: clientId,
+              client_secret: clientSecret, // only needed for web apps
+              grant_type: 'authorization_code',
+              code: code,
+              redirect_uri: redirectUri,
+            };
+
+            fetch(url, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+              },
+              body: new URLSearchParams(data),
+            })
+              .then((response) => response.json())
+              .then((response) => {
+                // store the access token and refresh token in local storage or cookie
+                console.log(`access_token: ${response.access_token}`);
+                localStorage.setItem('access_token', response.access_token);
+                localStorage.setItem('refresh_token', response.refresh_token);
+                localStorage.setItem('expires_in', response.expires_in);
+
+                // call OneDrive API with the access token
+                callOneDriveApi(response.access_token);
+              })
+              .catch((error) => console.log(error));
+          }}
+        >
+          Pegar token
+        </button>
+
         <img src="https://dsm04pap003files.storage.live.com/y4m-7oAj5J82KRE04MYmt0KXVATqn8a6AaRaJac-67mG4fh1oM8lTmobnKCHc1b3wzNrP91ewP5qnVUntq5MjzG9Q0DEpkjebASwQkPZKPmTF-s8wDFpmDrcVjxBWlepyxgtRfg4FnG8hPVmGQ7bajHNnrBKUg86qkBa-VX3_Yj7h8eUEBFStKswBnD1cEmI7Vd?width=300&height=181&cropmode=none" />
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
